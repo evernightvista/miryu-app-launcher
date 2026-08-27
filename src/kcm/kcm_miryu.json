@@ -1,0 +1,37 @@
+{
+    "KPlugin": {
+        "Id": "kcm_miryu",
+        "Name": "Miryu App Launcher",
+        "Name[zh_CN]": "Miryu 应用启动器",
+        "Name[zh_TW]": "Miryu 應用程式啟動器",
+        "Name[ja]": "Miryu アプリランチャー",
+        "Name[de]": "Miryu Anwendungsstarter",
+        "Name[ko]": "Miryu 앱 실행기",
+        "Name[fr]": "Lanceur d'applications Miryu",
+        "Description": "Configure how Miryu integrates AppImages into your desktop.",
+        "Description[zh_CN]": "配置 Miryu 如何将 AppImage 集成到您的桌面",
+        "Description[zh_TW]": "設定 Miryu 如何將 AppImage 整合到您的桌面",
+        "Description[ja]": "Miryu が AppImage をデスクトップに統合する方法を設定します",
+        "Description[de]": "Konfigurieren Sie, wie Miryu AppImages in Ihren Desktop integriert",
+        "Description[ko]": "Miryu가 AppImage를 데스크톱에 통합하는 방법을 구성합니다",
+        "Description[fr]": "Configurer comment Miryu intègre les AppImages dans votre bureau",
+        "Icon": "miryu-app-launcher",
+        "Category": "applications",
+        "Authors": [
+            {"Name": "MiryuGaming", "Url": "https://github.com/miryugaming"},
+            {"Name": "jtgg114514", "Url": "https://github.com/jtgg114514"},
+            {"Name": "FarnaHerry", "Url": "https://github.com/FarnaHerry"}
+        ],
+        "Copyright": "© 2027 KairikiFedora, © 2027 MiryuGaming",
+        "License": "MIT",
+        "Version": "1.0.0"
+    },
+    "I18n": {
+        "DefaultDomain": "miryu-app-launcher"
+    },
+    "X-KDE-System-Settings-Parent-Category": "applications",
+    "X-KDE-Weight": 50,
+    "OnlyShowIn": "KDE;",
+    "X-KDE-Keywords": "appimage;launcher;integration;",
+    "X-KDE-TranslationDomain": "miryu-app-launcher"
+}

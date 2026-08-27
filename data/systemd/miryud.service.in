@@ -1,0 +1,13 @@
+[Unit]
+Description=Miryu AppImage autointegration daemon
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=@KDE_INSTALL_FULL_BINDIR@/miryud
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

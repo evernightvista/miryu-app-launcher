@@ -1,0 +1,6 @@
+# Code generation options for miryusettings.kcfg
+File=miryusettings.kcfg
+ClassName=MiryuSettings
+Singleton=true
+Mutators=true
+# Inherits=KConfigSkeleton

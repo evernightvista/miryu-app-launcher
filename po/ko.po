@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the miryu-app-launcher package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: miryu-app-launcher 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/evernightvista/miryu-app-launcher/"
+"issues\n"
+"POT-Creation-Date: 2026-08-27 09:00+0000\n"
+"PO-Revision-Date: 2026-08-27 14:00+0900\n"
+"Last-Translator: \n"
+"Language-Team: Korean <kde-i18n-doc@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
+
+#: src/launcher/main.cpp:68 src/launcher/main.cpp:132 src/kcm/kcm_miryu.cpp:103
+msgid "Miryu App Launcher"
+msgstr "Miryu 앱 런처"
+
+#: src/launcher/main.cpp:70
+msgid "Lean AppImage desktop integration"
+msgstr "경량 AppImage 데스크톱 통합"
+
+#: src/launcher/main.cpp:73
+msgid "Miryu contributors"
+msgstr "Miryu 기여자"
+
+#: src/launcher/main.cpp:78
+msgid "Lean AppImage desktop integration for KDE Plasma 6"
+msgstr "KDE Plasma 6용 경량 AppImage 데스크톱 통합"
+
+#: src/launcher/main.cpp:81
+msgid "Path to an AppImage (and optional arguments to pass to it)"
+msgstr "AppImage 경로 (및 전달할 선택적 인수)"
+
+#: src/launcher/main.cpp:95
+msgid "No such file: %1"
+msgstr "파일이 없습니다: %1"
+
+#: src/launcher/main.cpp:104
+msgid "Not an AppImage: %1"
+msgstr "AppImage가 아닙니다: %1"
+
+#: src/launcher/main.cpp:133
+#, kde-format
+msgid ""
+"This AppImage has not been integrated yet.\n"
+"\n"
+"%1\n"
+"\n"
+"What would you like to do?"
+msgstr ""
+"이 AppImage는 아직 통합되지 않았습니다.\n"
+"\n"
+"%1\n"
+"\n"
+"어떻게 하시겠습니까?"
+
+#: src/launcher/main.cpp:136
+#, kde-format
+msgid ""
+"<b>Integrate and Run</b> — move the AppImage to %1 and add it to the "
+"application menu.\n"
+"<b>Run Once</b> — just launch the AppImage now without moving or modifying "
+"it."
+msgstr ""
+"<b>통합 및 실행</b> — AppImage를 %1로 이동하고 애플리케이션 메뉴에 추가합니다.\n"
+"<b>한 번만 실행</b> — 이동하거나 수정하지 않고 지금 AppImage를 실행합니다."
+
+#: src/launcher/main.cpp:140
+msgid "Integrate and Run"
+msgstr "통합 및 실행"
+
+#: src/launcher/main.cpp:141
+msgid "Run Once"
+msgstr "한 번만 실행"
+
+#: src/launcher/main.cpp:154
+msgid "Failed to integrate %1."
+msgstr "%1 통합 실패."
+
+#: src/core/miryu.cpp:195
+msgid "Warning"
+msgstr "경고"
+
+#: src/core/miryu.cpp:196
+msgid ""
+"An AppImage with the same name has already been integrated.\n"
+"\n"
+"Do you want to overwrite it? (Choosing No will run the AppImage once.)"
+msgstr ""
+"같은 이름의 AppImage가 이미 통합되었습니다.\n"
+"\n"
+"덮어쓰시겠습니까? ('아니오'를 선택하면 한 번만 실행됩니다.)"
+
+#: src/daemon/main.cpp:65
+msgid "Miryu Daemon"
+msgstr "Miryu 데몬"
+
+#: src/daemon/main.cpp:66
+msgid "Background AppImage autointegration"
+msgstr "백그라운드 AppImage 자동 통합"
+
+#: src/cli/main.cpp:146
+msgid "Miryu CLI"
+msgstr "Miryu CLI"
+
+#: src/cli/main.cpp:147
+msgid "Command line AppImage integration helper"
+msgstr "명령줄 AppImage 통합 도우미"
+
+#: src/cli/main.cpp:38 src/cli/main.cpp:71
+msgid "Usage: miryu-app-launcher-cli integrate <path...>"
+msgstr "사용법: miryu-app-launcher-cli integrate <경로...>"
+
+#: src/cli/main.cpp:46
+msgid "Not a file, skipping: %1"
+msgstr "파일이 아닙니다, 건너뜀: %1"
+
+#: src/cli/main.cpp:49
+msgid "Not an AppImage, skipping: %1"
+msgstr "AppImage가 아닙니다, 건너뜀: %1"
+
+#: src/cli/main.cpp:57
+msgid "Could not move %1 into the integration directory"
+msgstr "%1을(를) 통합 디렉터리로 이동할 수 없습니다"
+
+#: src/cli/main.cpp:61
+msgid "Failed to register %1"
+msgstr "%1 등록 실패"
+
+#: src/cli/main.cpp:63
+msgid "Integrated: %1"
+msgstr "통합됨: %1"
+
+#: src/cli/main.cpp:73
+msgid "Usage: miryu-app-launcher-cli unintegrate <path...>"
+msgstr "사용법: miryu-app-launcher-cli unintegrate <경로...>"
+
+#: src/cli/main.cpp:83
+msgid "Unintegrated: %1"
+msgstr "통합 해제됨: %1"
+
+#: src/cli/main.cpp:85
+msgid "Failed to unintegrate %1"
+msgstr "%1 통합 해제 실패"
+
+#: src/cli/main.cpp:120
+msgid "Removed stale entry: %1"
+msgstr "오래된 항목 제거됨: %1"
+
+#: src/cli/main.cpp:127
+msgid "Removed %1 stale entry."
+msgid_plural "Removed %1 stale entries."
+msgstr[0] "오래된 항목 %1개 제거됨."
+
+#: src/cli/main.cpp:131
+msgid "Unknown command: %1"
+msgstr "알 수 없는 명령: %1"
+
+#. i18n: Command line usage block. Keep the command names untranslated.
+#: src/cli/main.cpp:134
+msgid ""
+"Usage: miryu-app-launcher-cli <command> [args...]\n"
+"\n"
+"Commands:\n"
+"  integrate   <path...>   Integrate AppImages into the desktop\n"
+"  unintegrate <path...>   Remove AppImage desktop integration\n"
+"  list                    List integrated AppImages (JSON)\n"
+"  cleanup                 Remove stale desktop entries"
+msgstr ""
+"사용법: miryu-app-launcher-cli <명령> [인수...]\n"
+"\n"
+"명령:\n"
+"  integrate   <경로...>   AppImage를 데스크톱에 통합\n"
+"  unintegrate <경로...>   AppImage 데스크톱 통합 제거\n"
+"  list                    통합된 AppImage 목록 표시 (JSON)\n"
+"  cleanup                 오래된 데스크톱 항목 제거"
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:50
+msgctxt "@title:group"
+msgid "Integration"
+msgstr "통합"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:52
+msgctxt "@option:check"
+msgid "Ask whether to integrate an AppImage when it is opened"
+msgstr "AppImage를 열 때 통합할지 묻기"
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:56
+msgctxt "@button"
+msgid "Browse..."
+msgstr "찾아보기..."
+
+#. @label:textbox
+#: src/kcm/kcm_miryu.cpp:61
+msgctxt "@label:textbox"
+msgid "Integration directory:"
+msgstr "통합 디렉터리:"
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:65
+msgctxt "@title:group"
+msgid "Background Daemon"
+msgstr "백그라운드 데몬"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:67
+msgctxt "@option:check"
+msgid "Enable the miryud autointegration daemon"
+msgstr "miryud 자동 통합 데몬 활성화"
+
+#. @label
+#: src/kcm/kcm_miryu.cpp:85
+msgctxt "@label"
+msgid "Additional directories to watch:"
+msgstr "추가 감시 디렉터리:"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:82
+msgctxt "@option:check"
+msgid "Also watch <mount>/Applications on mounted filesystems"
+msgstr "마운트된 파일 시스템의 <mount>/Applications도 감시"
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:73
+msgctxt "@button"
+msgid "Add..."
+msgstr "추가..."
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:75
+msgctxt "@button"
+msgid "Remove"
+msgstr "제거"
+
+#. @title:window
+#: src/kcm/kcm_miryu.cpp:178
+msgctxt "@title:window"
+msgid "Select Integration Directory"
+msgstr "통합 디렉터리 선택"
+
+#. @title:window
+#: src/kcm/kcm_miryu.cpp:226
+msgctxt "@title:window"
+msgid "Select Directory to Watch"
+msgstr "감시할 디렉터리 선택"
+
+#. @title:tab
+#: src/kcm/kcm_miryu.cpp:90
+msgctxt "@title:tab"
+msgid "Settings"
+msgstr "설정"
+
+#. @title:tab
+#: src/kcm/kcm_miryu.cpp:163
+msgctxt "@title:tab"
+msgid "About"
+msgstr "정보"
+
+#. @label
+#: src/kcm/kcm_miryu.cpp:110
+msgctxt "@label"
+msgid "Version %1"
+msgstr "버전 %1"
+
+#. @info
+#: src/kcm/kcm_miryu.cpp:119
+msgctxt "@info"
+msgid "© 2027 KairikiFedora, © 2027 MiryuGaming"
+msgstr "© 2027 KairikiFedora, © 2027 MiryuGaming"
+
+#. @info
+#: src/kcm/kcm_miryu.cpp:125
+msgctxt "@info"
+msgid "Licensed under the MIT License."
+msgstr "MIT 라이선스에 따라 라이선스가 부여됩니다."
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:131
+msgctxt "@title:group"
+msgid "Thanks to the following contributors:"
+msgstr "다음 기여자에게 감사드립니다:"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:152
+msgctxt "@info:contributor"
+msgid "MiryuGaming"
+msgstr "MiryuGaming"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:155
+msgctxt "@info:contributor"
+msgid "jtgg114514"
+msgstr "jtgg114514"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:158
+msgctxt "@info:contributor"
+msgid "FarnaHerry"
+msgstr "FarnaHerry"
+
+#. @action:inmenu
+#: src/core/miryu.cpp:624
+msgctxt "@action:inmenu"
+msgid "Remove this AppImage"
+msgstr "이 AppImage 제거"

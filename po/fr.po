@@ -1,0 +1,316 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the miryu-app-launcher package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: miryu-app-launcher 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/evernightvista/miryu-app-launcher/"
+"issues\n"
+"POT-Creation-Date: 2026-08-27 09:00+0000\n"
+"PO-Revision-Date: 2026-08-27 14:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#: src/launcher/main.cpp:68 src/launcher/main.cpp:132 src/kcm/kcm_miryu.cpp:103
+msgid "Miryu App Launcher"
+msgstr "Miryu Lanceur d'applications"
+
+#: src/launcher/main.cpp:70
+msgid "Lean AppImage desktop integration"
+msgstr "Intégration légère d'AppImage dans le bureau"
+
+#: src/launcher/main.cpp:73
+msgid "Miryu contributors"
+msgstr "Contributeurs de Miryu"
+
+#: src/launcher/main.cpp:78
+msgid "Lean AppImage desktop integration for KDE Plasma 6"
+msgstr "Intégration légère d'AppImage pour KDE Plasma 6"
+
+#: src/launcher/main.cpp:81
+msgid "Path to an AppImage (and optional arguments to pass to it)"
+msgstr "Chemin vers une AppImage (et arguments facultatifs)"
+
+#: src/launcher/main.cpp:95
+msgid "No such file: %1"
+msgstr "Fichier inexistant : %1"
+
+#: src/launcher/main.cpp:104
+msgid "Not an AppImage: %1"
+msgstr "Ce n'est pas une AppImage : %1"
+
+#: src/launcher/main.cpp:133
+#, kde-format
+msgid ""
+"This AppImage has not been integrated yet.\n"
+"\n"
+"%1\n"
+"\n"
+"What would you like to do?"
+msgstr ""
+"Cette AppImage n'a pas encore été intégrée.\n"
+"\n"
+"%1\n"
+"\n"
+"Que voulez-vous faire ?"
+
+#: src/launcher/main.cpp:136
+#, kde-format
+msgid ""
+"<b>Integrate and Run</b> — move the AppImage to %1 and add it to the "
+"application menu.\n"
+"<b>Run Once</b> — just launch the AppImage now without moving or modifying "
+"it."
+msgstr ""
+"<b>Intégrer et exécuter</b> — déplacer l'AppImage vers %1 et l'ajouter au menu des applications.\n"
+"<b>Exécuter une fois</b> — lancer l'AppImage maintenant sans la déplacer ni la modifier."
+
+#: src/launcher/main.cpp:140
+msgid "Integrate and Run"
+msgstr "Intégrer et exécuter"
+
+#: src/launcher/main.cpp:141
+msgid "Run Once"
+msgstr "Exécuter une fois"
+
+#: src/launcher/main.cpp:154
+msgid "Failed to integrate %1."
+msgstr "Échec de l'intégration de %1."
+
+#: src/core/miryu.cpp:195
+msgid "Warning"
+msgstr "Attention"
+
+#: src/core/miryu.cpp:196
+msgid ""
+"An AppImage with the same name has already been integrated.\n"
+"\n"
+"Do you want to overwrite it? (Choosing No will run the AppImage once.)"
+msgstr ""
+"Une AppImage portant le même nom a déjà été intégrée.\n"
+"\n"
+"Voulez-vous la remplacer ? (Choisir « Non » exécutera l'AppImage une fois.)"
+
+#: src/daemon/main.cpp:65
+msgid "Miryu Daemon"
+msgstr "Miryu Démon"
+
+#: src/daemon/main.cpp:66
+msgid "Background AppImage autointegration"
+msgstr "Autointégration d'AppImage en arrière-plan"
+
+#: src/cli/main.cpp:146
+msgid "Miryu CLI"
+msgstr "Miryu CLI"
+
+#: src/cli/main.cpp:147
+msgid "Command line AppImage integration helper"
+msgstr "Outil d'aide à l'intégration d'AppImage en ligne de commande"
+
+#: src/cli/main.cpp:38 src/cli/main.cpp:71
+msgid "Usage: miryu-app-launcher-cli integrate <path...>"
+msgstr "Utilisation : miryu-app-launcher-cli integrate <chemin...>"
+
+#: src/cli/main.cpp:46
+msgid "Not a file, skipping: %1"
+msgstr "Ce n'est pas un fichier, ignoré : %1"
+
+#: src/cli/main.cpp:49
+msgid "Not an AppImage, skipping: %1"
+msgstr "Ce n'est pas une AppImage, ignoré : %1"
+
+#: src/cli/main.cpp:57
+msgid "Could not move %1 into the integration directory"
+msgstr "Impossible de déplacer %1 vers le répertoire d'intégration"
+
+#: src/cli/main.cpp:61
+msgid "Failed to register %1"
+msgstr "Échec de l'enregistrement de %1"
+
+#: src/cli/main.cpp:63
+msgid "Integrated: %1"
+msgstr "Intégré : %1"
+
+#: src/cli/main.cpp:73
+msgid "Usage: miryu-app-launcher-cli unintegrate <path...>"
+msgstr "Utilisation : miryu-app-launcher-cli unintegrate <chemin...>"
+
+#: src/cli/main.cpp:83
+msgid "Unintegrated: %1"
+msgstr "Désintégré : %1"
+
+#: src/cli/main.cpp:85
+msgid "Failed to unintegrate %1"
+msgstr "Échec de la désintégration de %1"
+
+#: src/cli/main.cpp:120
+msgid "Removed stale entry: %1"
+msgstr "Entrée obsolète supprimée : %1"
+
+#: src/cli/main.cpp:127
+msgid "Removed %1 stale entry."
+msgid_plural "Removed %1 stale entries."
+msgstr[0] "Entrée obsolète supprimée : %1"
+msgstr[1] "Entrées obsolètes supprimées : %1"
+
+#: src/cli/main.cpp:131
+msgid "Unknown command: %1"
+msgstr "Commande inconnue : %1"
+
+#. i18n: Command line usage block. Keep the command names untranslated.
+#: src/cli/main.cpp:134
+msgid ""
+"Usage: miryu-app-launcher-cli <command> [args...]\n"
+"\n"
+"Commands:\n"
+"  integrate   <path...>   Integrate AppImages into the desktop\n"
+"  unintegrate <path...>   Remove AppImage desktop integration\n"
+"  list                    List integrated AppImages (JSON)\n"
+"  cleanup                 Remove stale desktop entries"
+msgstr ""
+"Utilisation : miryu-app-launcher-cli <commande> [arguments...]\n"
+"\n"
+"Commandes :\n"
+"  integrate   <chemin...>   Intégrer des AppImages dans le bureau\n"
+"  unintegrate <chemin...>   Supprimer l'intégration des AppImages\n"
+"  list                    Lister les AppImages intégrées (JSON)\n"
+"  cleanup                 Supprimer les entrées de bureau obsolètes"
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:50
+msgctxt "@title:group"
+msgid "Integration"
+msgstr "Intégration"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:52
+msgctxt "@option:check"
+msgid "Ask whether to integrate an AppImage when it is opened"
+msgstr "Demander s'il faut intégrer une AppImage lorsqu'elle est ouverte"
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:56
+msgctxt "@button"
+msgid "Browse..."
+msgstr "Parcourir..."
+
+#. @label:textbox
+#: src/kcm/kcm_miryu.cpp:61
+msgctxt "@label:textbox"
+msgid "Integration directory:"
+msgstr "Répertoire d'intégration :"
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:65
+msgctxt "@title:group"
+msgid "Background Daemon"
+msgstr "Démon d'arrière-plan"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:67
+msgctxt "@option:check"
+msgid "Enable the miryud autointegration daemon"
+msgstr "Activer le démon d'autointégration miryud"
+
+#. @label
+#: src/kcm/kcm_miryu.cpp:85
+msgctxt "@label"
+msgid "Additional directories to watch:"
+msgstr "Répertoires supplémentaires à surveiller :"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:82
+msgctxt "@option:check"
+msgid "Also watch <mount>/Applications on mounted filesystems"
+msgstr "Surveiller également <mount>/Applications sur les systèmes de fichiers montés"
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:73
+msgctxt "@button"
+msgid "Add..."
+msgstr "Ajouter..."
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:75
+msgctxt "@button"
+msgid "Remove"
+msgstr "Supprimer"
+
+#. @title:window
+#: src/kcm/kcm_miryu.cpp:178
+msgctxt "@title:window"
+msgid "Select Integration Directory"
+msgstr "Sélectionner le répertoire d'intégration"
+
+#. @title:window
+#: src/kcm/kcm_miryu.cpp:226
+msgctxt "@title:window"
+msgid "Select Directory to Watch"
+msgstr "Sélectionner le répertoire à surveiller"
+
+#. @title:tab
+#: src/kcm/kcm_miryu.cpp:90
+msgctxt "@title:tab"
+msgid "Settings"
+msgstr "Paramètres"
+
+#. @title:tab
+#: src/kcm/kcm_miryu.cpp:163
+msgctxt "@title:tab"
+msgid "About"
+msgstr "À propos"
+
+#. @label
+#: src/kcm/kcm_miryu.cpp:110
+msgctxt "@label"
+msgid "Version %1"
+msgstr "Version %1"
+
+#. @info
+#: src/kcm/kcm_miryu.cpp:119
+msgctxt "@info"
+msgid "© 2027 KairikiFedora, © 2027 MiryuGaming"
+msgstr "© 2027 KairikiFedora, © 2027 MiryuGaming"
+
+#. @info
+#: src/kcm/kcm_miryu.cpp:125
+msgctxt "@info"
+msgid "Licensed under the MIT License."
+msgstr "Sous licence MIT."
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:131
+msgctxt "@title:group"
+msgid "Thanks to the following contributors:"
+msgstr "Merci aux contributeurs suivants :"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:152
+msgctxt "@info:contributor"
+msgid "MiryuGaming"
+msgstr "MiryuGaming"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:155
+msgctxt "@info:contributor"
+msgid "jtgg114514"
+msgstr "jtgg114514"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:158
+msgctxt "@info:contributor"
+msgid "FarnaHerry"
+msgstr "FarnaHerry"
+
+#. @action:inmenu
+#: src/core/miryu.cpp:624
+msgctxt "@action:inmenu"
+msgid "Remove this AppImage"
+msgstr "Supprimer cette AppImage"

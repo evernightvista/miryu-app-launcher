@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/vnd.appimage">
+    <comment>AppImage application bundle</comment>
+    <comment xml:lang="zh_CN">AppImage 应用程序包</comment>
+    <generic-icon name="application-x-executable"/>
+    <magic priority="50">
+      <match type="string" value="AI\x02" offset="8"/>
+      <match type="string" value="AI\x01" offset="8"/>
+    </magic>
+    <glob pattern="*.AppImage"/>
+    <glob pattern="*.appimage"/>
+  </mime-type>
+</mime-info>

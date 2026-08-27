@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name="miryurc" />
+
+  <group name="Miryu">
+    <entry name="AskToMove" type="Bool">
+      <label>If true, ask whether to integrate an AppImage when it is opened.</label>
+      <default>true</default>
+    </entry>
+
+    <entry name="Destination" type="Path">
+      <label>Directory where integrated AppImages are stored.</label>
+      <default>~/.miryu-app</default>
+    </entry>
+
+    <entry name="EnableDaemon" type="Bool">
+      <label>Whether the miryud autointegration daemon should be (auto)started.</label>
+      <default>false</default>
+    </entry>
+  </group>
+
+  <group name="Daemon">
+    <entry name="AdditionalDirectories" type="PathList">
+      <label>Extra directories to watch for AppImages (in addition to the destination).</label>
+      <default></default>
+    </entry>
+
+    <entry name="MonitorMountedFilesystems" type="Bool">
+      <label>Scan mounted real filesystems for an &lt;mount&gt;/Applications directory.</label>
+      <default>false</default>
+    </entry>
+  </group>
+</kcfg>

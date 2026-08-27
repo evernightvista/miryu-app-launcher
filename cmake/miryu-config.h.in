@@ -1,0 +1,5 @@
+// Auto-generated. Do not edit.
+#pragma once
+
+#define MIRYU_VERSION "@PROJECT_VERSION@"
+#define MIRYU_DATA_DIR "@KDE_INSTALL_FULL_DATAROOTDIR@/miryu"

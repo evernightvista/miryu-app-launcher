@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the miryu-app-launcher package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: miryu-app-launcher 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/evernightvista/miryu-app-launcher/"
+"issues\n"
+"POT-Creation-Date: 2026-08-27 09:00+0000\n"
+"PO-Revision-Date: 2026-08-27 14:00+0800\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Traditional) <kde-i18n-doc@kde.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
+
+#: src/launcher/main.cpp:68 src/launcher/main.cpp:132 src/kcm/kcm_miryu.cpp:103
+msgid "Miryu App Launcher"
+msgstr "Miryu 應用程式啟動器"
+
+#: src/launcher/main.cpp:70
+msgid "Lean AppImage desktop integration"
+msgstr "輕量級 AppImage 桌面整合"
+
+#: src/launcher/main.cpp:73
+msgid "Miryu contributors"
+msgstr "Miryu 貢獻者"
+
+#: src/launcher/main.cpp:78
+msgid "Lean AppImage desktop integration for KDE Plasma 6"
+msgstr "適用於 KDE Plasma 6 的輕量級 AppImage 桌面整合"
+
+#: src/launcher/main.cpp:81
+msgid "Path to an AppImage (and optional arguments to pass to it)"
+msgstr "AppImage 路徑（可附帶傳遞給它的選擇性參數）"
+
+#: src/launcher/main.cpp:95
+msgid "No such file: %1"
+msgstr "沒有此檔案：%1"
+
+#: src/launcher/main.cpp:104
+msgid "Not an AppImage: %1"
+msgstr "不是 AppImage 檔案：%1"
+
+#: src/launcher/main.cpp:133
+#, kde-format
+msgid ""
+"This AppImage has not been integrated yet.\n"
+"\n"
+"%1\n"
+"\n"
+"What would you like to do?"
+msgstr ""
+"此 AppImage 尚未整合。\n"
+"\n"
+"%1\n"
+"\n"
+"您想要怎麼做？"
+
+#: src/launcher/main.cpp:136
+#, kde-format
+msgid ""
+"<b>Integrate and Run</b> — move the AppImage to %1 and add it to the "
+"application menu.\n"
+"<b>Run Once</b> — just launch the AppImage now without moving or modifying "
+"it."
+msgstr ""
+"<b>整合並執行</b> — 將 AppImage 移動到 %1 並新增至應用程式選單。\n"
+"<b>僅執行一次</b> — 現在僅啟動 AppImage，不移動或修改它。"
+
+#: src/launcher/main.cpp:140
+msgid "Integrate and Run"
+msgstr "整合並執行"
+
+#: src/launcher/main.cpp:141
+msgid "Run Once"
+msgstr "僅執行一次"
+
+#: src/launcher/main.cpp:154
+msgid "Failed to integrate %1."
+msgstr "整合 %1 失敗。"
+
+#: src/core/miryu.cpp:195
+msgid "Warning"
+msgstr "警告"
+
+#: src/core/miryu.cpp:196
+msgid ""
+"An AppImage with the same name has already been integrated.\n"
+"\n"
+"Do you want to overwrite it? (Choosing No will run the AppImage once.)"
+msgstr ""
+"已存在同名 AppImage 的整合。\n"
+"\n"
+"是否要覆蓋它？（選擇「否」將僅執行該 AppImage 一次。）"
+
+#: src/daemon/main.cpp:65
+msgid "Miryu Daemon"
+msgstr "Miryu 守護程序"
+
+#: src/daemon/main.cpp:66
+msgid "Background AppImage autointegration"
+msgstr "背景 AppImage 自動整合"
+
+#: src/cli/main.cpp:146
+msgid "Miryu CLI"
+msgstr "Miryu 命令列工具"
+
+#: src/cli/main.cpp:147
+msgid "Command line AppImage integration helper"
+msgstr "命令列 AppImage 整合輔助工具"
+
+#: src/cli/main.cpp:38 src/cli/main.cpp:71
+msgid "Usage: miryu-app-launcher-cli integrate <path...>"
+msgstr "用法：miryu-app-launcher-cli integrate <路徑...>"
+
+#: src/cli/main.cpp:46
+msgid "Not a file, skipping: %1"
+msgstr "不是檔案，已跳過：%1"
+
+#: src/cli/main.cpp:49
+msgid "Not an AppImage, skipping: %1"
+msgstr "不是 AppImage，已跳過：%1"
+
+#: src/cli/main.cpp:57
+msgid "Could not move %1 into the integration directory"
+msgstr "無法將 %1 移動到整合目錄"
+
+#: src/cli/main.cpp:61
+msgid "Failed to register %1"
+msgstr "註冊 %1 失敗"
+
+#: src/cli/main.cpp:63
+msgid "Integrated: %1"
+msgstr "已整合：%1"
+
+#: src/cli/main.cpp:73
+msgid "Usage: miryu-app-launcher-cli unintegrate <path...>"
+msgstr "用法：miryu-app-launcher-cli unintegrate <路徑...>"
+
+#: src/cli/main.cpp:83
+msgid "Unintegrated: %1"
+msgstr "已取消整合：%1"
+
+#: src/cli/main.cpp:85
+msgid "Failed to unintegrate %1"
+msgstr "取消整合 %1 失敗"
+
+#: src/cli/main.cpp:120
+msgid "Removed stale entry: %1"
+msgstr "已移除過時條目：%1"
+
+#: src/cli/main.cpp:127
+msgid "Removed %1 stale entry."
+msgid_plural "Removed %1 stale entries."
+msgstr[0] "已移除 %1 個過時條目。"
+
+#: src/cli/main.cpp:131
+msgid "Unknown command: %1"
+msgstr "未知命令：%1"
+
+#. i18n: Command line usage block. Keep the command names untranslated.
+#: src/cli/main.cpp:134
+msgid ""
+"Usage: miryu-app-launcher-cli <command> [args...]\n"
+"\n"
+"Commands:\n"
+"  integrate   <path...>   Integrate AppImages into the desktop\n"
+"  unintegrate <path...>   Remove AppImage desktop integration\n"
+"  list                    List integrated AppImages (JSON)\n"
+"  cleanup                 Remove stale desktop entries"
+msgstr ""
+"用法：miryu-app-launcher-cli <命令> [參數...]\n"
+"\n"
+"命令：\n"
+"  integrate   <路徑...>   將 AppImage 整合到桌面\n"
+"  unintegrate <路徑...>   移除 AppImage 桌面整合\n"
+"  list                    列出已整合的 AppImage（JSON 格式）\n"
+"  cleanup                 移除過時的桌面條目"
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:50
+msgctxt "@title:group"
+msgid "Integration"
+msgstr "整合"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:52
+msgctxt "@option:check"
+msgid "Ask whether to integrate an AppImage when it is opened"
+msgstr "打開 AppImage 時詢問是否整合"
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:56
+msgctxt "@button"
+msgid "Browse..."
+msgstr "瀏覽..."
+
+#. @label:textbox
+#: src/kcm/kcm_miryu.cpp:61
+msgctxt "@label:textbox"
+msgid "Integration directory:"
+msgstr "整合目錄："
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:65
+msgctxt "@title:group"
+msgid "Background Daemon"
+msgstr "背景守護程序"
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:67
+msgctxt "@option:check"
+msgid "Enable the miryud autointegration daemon"
+msgstr "啟用 miryud 自動整合守護程序"
+
+#. @label
+#: src/kcm/kcm_miryu.cpp:85
+msgctxt "@label"
+msgid "Additional directories to watch:"
+msgstr "額外監視的目錄："
+
+#. @option:check
+#: src/kcm/kcm_miryu.cpp:82
+msgctxt "@option:check"
+msgid "Also watch <mount>/Applications on mounted filesystems"
+msgstr "同時監視已掛載檔案系統上的 <mount>/Applications"
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:73
+msgctxt "@button"
+msgid "Add..."
+msgstr "新增..."
+
+#. @button
+#: src/kcm/kcm_miryu.cpp:75
+msgctxt "@button"
+msgid "Remove"
+msgstr "移除"
+
+#. @title:window
+#: src/kcm/kcm_miryu.cpp:178
+msgctxt "@title:window"
+msgid "Select Integration Directory"
+msgstr "選擇整合目錄"
+
+#. @title:window
+#: src/kcm/kcm_miryu.cpp:226
+msgctxt "@title:window"
+msgid "Select Directory to Watch"
+msgstr "選擇要監視的目錄"
+
+#. @title:tab
+#: src/kcm/kcm_miryu.cpp:90
+msgctxt "@title:tab"
+msgid "Settings"
+msgstr "設定"
+
+#. @title:tab
+#: src/kcm/kcm_miryu.cpp:163
+msgctxt "@title:tab"
+msgid "About"
+msgstr "關於"
+
+#. @label
+#: src/kcm/kcm_miryu.cpp:110
+msgctxt "@label"
+msgid "Version %1"
+msgstr "版本 %1"
+
+#. @info
+#: src/kcm/kcm_miryu.cpp:119
+msgctxt "@info"
+msgid "© 2027 KairikiFedora, © 2027 MiryuGaming"
+msgstr "© 2027 KairikiFedora, © 2027 MiryuGaming"
+
+#. @info
+#: src/kcm/kcm_miryu.cpp:125
+msgctxt "@info"
+msgid "Licensed under the MIT License."
+msgstr "基於 MIT 許可證授權。"
+
+#. @title:group
+#: src/kcm/kcm_miryu.cpp:131
+msgctxt "@title:group"
+msgid "Thanks to the following contributors:"
+msgstr "感謝以下貢獻者："
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:152
+msgctxt "@info:contributor"
+msgid "MiryuGaming"
+msgstr "MiryuGaming"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:155
+msgctxt "@info:contributor"
+msgid "jtgg114514"
+msgstr "jtgg114514"
+
+#. @info:contributor
+#: src/kcm/kcm_miryu.cpp:158
+msgctxt "@info:contributor"
+msgid "FarnaHerry"
+msgstr "FarnaHerry"
+
+#. @action:inmenu
+#: src/core/miryu.cpp:624
+msgctxt "@action:inmenu"
+msgid "Remove this AppImage"
+msgstr "移除此 AppImage"
