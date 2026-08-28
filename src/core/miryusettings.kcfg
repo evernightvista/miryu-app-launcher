@@ -13,7 +13,7 @@
 
     <entry name="Destination" type="Path">
       <label>Directory where integrated AppImages are stored.</label>
-      <default>~/.miryu-app</default>
+      <default>~/Applications</default>
     </entry>
 
     <entry name="EnableDaemon" type="Bool">

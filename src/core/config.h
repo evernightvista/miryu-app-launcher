@@ -20,7 +20,7 @@ namespace miryu {
 // Kept for backward compatibility with code that needs a compile-time default.
 // The authoritative default lives in miryu.kcfg.
 inline QString defaultDestination() {
-    return QString::fromUtf8(qgetenv("HOME")) + QStringLiteral("/.miryu-app");
+    return QString::fromUtf8(qgetenv("HOME")) + QStringLiteral("/Applications");
 }
 
 // Thin wrapper around the generated MiryuSettings (KConfigSkeleton).

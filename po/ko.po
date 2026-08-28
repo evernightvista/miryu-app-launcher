@@ -308,8 +308,6 @@ msgctxt "@info:contributor"
 msgid "FarnaHerry"
 msgstr "FarnaHerry"
 
-#. @action:inmenu
 #: src/core/miryu.cpp:624
-msgctxt "@action:inmenu"
 msgid "Remove this AppImage"
 msgstr "이 AppImage 제거"

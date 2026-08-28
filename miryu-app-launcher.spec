@@ -1,6 +1,6 @@
 Name:           miryu-app-launcher
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Lean AppImage desktop integration for KDE Plasma 6
 
 License:        MIT
@@ -72,6 +72,17 @@ avoiding the complexity of a preload library and recursive execution.
 %{_datadir}/locale/*/LC_MESSAGES/miryu-app-launcher.mo
 
 %changelog
+* Fri Aug 28 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-2
+- Fix Remove AppImage action not following system language changes:
+  * Write untranslated source string to desktop file instead of i18nc() result
+  * KDE now translates it at display time via X-KDE-TranslationDomain
+  * Remove msgctxt from .po files so dgettext lookup succeeds
+  * Add kli18n keyword to Messages.sh for xgettext extraction
+- Fix fastfetch not counting integrated AppImages:
+  * Change default integration directory from ~/.miryu-app to ~/Applications
+    (fastfetch scans ~/AppImages and ~/Applications for *.appimage files)
+  * Use config destination() in launcher prompt instead of hardcoded path
+
 * Thu Aug 27 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-1
 - Initial package with fixes:
   * Fix KCM not showing in KDE System Settings

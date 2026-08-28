@@ -619,11 +619,13 @@ bool installDesktopFileAndIcons(const QString& pathToAppImage) {
                                G_KEY_FILE_DESKTOP_KEY_ACTIONS,
                                ptrs.data(), ptrs.size());
 
-    // the Remove action's Name is translated at runtime using the miryu-app-launcher
-    // translation domain, then written into the desktop file.
+    // Write the untranslated source string so KDE can translate it at display
+    // time via X-KDE-TranslationDomain. Using i18nc() here would freeze the
+    // name in whatever locale was active at integration time.
     const QByteArray section = "Desktop Action " + removeKey;
-    const QString removeActionName = i18nc("@action:inmenu", "Remove this AppImage");
-    g_key_file_set_string(kf.get(), section.constData(), "Name", removeActionName.toUtf8().constData());
+    static const QByteArray removeActionName =
+        ki18n("Remove this AppImage").untranslatedText();
+    g_key_file_set_string(kf.get(), section.constData(), "Name", removeActionName.constData());
     g_key_file_set_string(kf.get(), section.constData(), "Icon", "miryu-app-launcher");
     const QByteArray exec = ("miryu-app-launcher-cli unintegrate \"" +
                              pathToAppImage.toUtf8() + "\"");

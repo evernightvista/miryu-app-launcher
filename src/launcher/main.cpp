@@ -142,7 +142,7 @@ int main(int argc, char** argv) {
     box.setInformativeText(
         i18n("<b>Integrate and Run</b> — move the AppImage to %1 and add it to the application menu.\n"
              "<b>Run Once</b> — just launch the AppImage now without moving or modifying it.")
-            .arg(QStringLiteral("~/.miryu-app")));
+            .arg(cfg.destination()));
     auto* integrateAndRun = box.addButton(i18n("Integrate and Run"), QMessageBox::AcceptRole);
     auto* runOnce          = box.addButton(i18n("Run Once"),          QMessageBox::AcceptRole);
     box.addButton(QMessageBox::Cancel);
