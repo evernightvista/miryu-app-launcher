@@ -4,11 +4,14 @@
 #include "miryu.h"
 #include "config.h"
 #include "miryu-config.h"
+#include "action-translations.h"
 
 #include <KLocalizedString>
 
 #include <QDBusMessage>
 #include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusReply>
 #include <QDir>
 #include <QDirIterator>
 #include <QFile>
@@ -16,7 +19,6 @@
 #include <QImageReader>
 #include <QList>
 #include <QMessageBox>
-#include <QPair>
 #include <QProcess>
 #include <QSet>
 #include <QStandardPaths>
@@ -619,13 +621,20 @@ bool installDesktopFileAndIcons(const QString& pathToAppImage) {
                                G_KEY_FILE_DESKTOP_KEY_ACTIONS,
                                ptrs.data(), ptrs.size());
 
-    // Write the untranslated source string so KDE can translate it at display
-    // time via X-KDE-TranslationDomain. Using i18nc() here would freeze the
-    // name in whatever locale was active at integration time.
+    // Write the English source string as the default Name, plus Name[locale]
+    // entries for every available translation. KService does NOT translate
+    // [Desktop Action] Name= via X-KDE-TranslationDomain, so we must embed
+    // all translations directly in the .desktop file. KConfig's readEntry("Name")
+    // then picks the right one based on the current system locale.
     const QByteArray section = "Desktop Action " + removeKey;
     static const QByteArray removeActionName =
         ki18n("Remove this AppImage").untranslatedText();
     g_key_file_set_string(kf.get(), section.constData(), "Name", removeActionName.constData());
+    for (int t = 0; t < actionTranslationCount; ++t) {
+        const QByteArray key = QByteArray("Name[") + actionTranslations[t].locale + "]";
+        g_key_file_set_string(kf.get(), section.constData(),
+                              key.constData(), actionTranslations[t].text);
+    }
     g_key_file_set_string(kf.get(), section.constData(), "Icon", "miryu-app-launcher");
     const QByteArray exec = ("miryu-app-launcher-cli unintegrate \"" +
                              pathToAppImage.toUtf8() + "\"");
@@ -776,26 +785,99 @@ IntegrationResult integrateAppImage(const QString& pathToAppImage,
 
 void refreshCaches() {
     const auto data = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-    const QList<QPair<QString, QStringList>> cmds = {
-        {QStringLiteral("update-desktop-database"), {data + QStringLiteral("/applications")}},
-        {QStringLiteral("gtk-update-icon-cache"),  {data + QStringLiteral("/icons/hicolor"), QStringLiteral("-t"), QStringLiteral("-f")}},
-        {QStringLiteral("update-mime-database"),    {data + QStringLiteral("/mime")}},
-    };
-    for (const auto& [prog, args] : cmds) {
+
+    // update-desktop-database is fast and needed for MIME type associations;
+    // run it synchronously so it completes before we return.
+    {
         QProcess p;
-        p.setProgram(prog);
-        p.setArguments(args);
+        p.setProgram(QStringLiteral("update-desktop-database"));
+        p.setArguments({data + QStringLiteral("/applications")});
+        p.setProcessChannelMode(QProcess::ForwardedChannels);
+        p.start();
+        p.waitForFinished(10000); // 10s timeout
+    }
+
+    // gtk-update-icon-cache and update-mime-database are not on the critical
+    // path for KDE's application menu; run them detached so they don't block.
+    {
+        QProcess p;
+        p.setProgram(QStringLiteral("gtk-update-icon-cache"));
+        p.setArguments({data + QStringLiteral("/icons/hicolor"), QStringLiteral("-t"), QStringLiteral("-f")});
+        p.setProcessChannelMode(QProcess::ForwardedChannels);
+        p.startDetached();
+    }
+    {
+        QProcess p;
+        p.setProgram(QStringLiteral("update-mime-database"));
+        p.setArguments({data + QStringLiteral("/mime")});
         p.setProcessChannelMode(QProcess::ForwardedChannels);
         p.startDetached();
     }
 
-    // Also try to run kbuildsycoca6 to update KDE's cache
-    {
-        QProcess p;
-        p.setProgram(QStringLiteral("kbuildsycoca6"));
-        p.setArguments({QStringLiteral("--noincremental")});
-        p.setProcessChannelMode(QProcess::ForwardedChannels);
-        p.startDetached();
+    // =====================================================================
+    // Rebuild the KDE sycoca cache so newly integrated AppImages appear in
+    // KDE Plasma's application launcher (Kickoff/KRunner) immediately.
+    //
+    // The CORRECT way to trigger a sycoca rebuild in KDE is to call kded's
+    // D-Bus method org.kde.kbuildsycoca.recreate(). kded then calls
+    // KSycoca::ensureCacheValid() in-process, which checks directory
+    // timestamps, runs kbuildsycoca if needed, and properly notifies all
+    // running KDE applications through KDirWatch + databaseChanged().
+    //
+    // Running kbuildsycoca6 directly as a standalone process does write the
+    // database file, but KDirWatch in plasmashell may not reliably detect
+    // the atomic rename used by QSaveFile. Using kded's D-Bus API avoids
+    // this race because kded manages its own KDirWatch state and calls
+    // KSycoca internals directly.
+    //
+    // We try kded6 first (Plasma 6 / KF6), then kded5 (Plasma 5 / KF5).
+    // If neither is available (e.g. kded not running, non-KDE environment),
+    // fall back to running kbuildsycoca6/kbuildsycoca5 directly.
+    // =====================================================================
+    bool rebuiltViaDbus = false;
+
+    static const QStringList kdedServices = {
+        QStringLiteral("org.kde.kded6"),
+        QStringLiteral("org.kde.kded5"),
+    };
+    for (const auto& service : kdedServices) {
+        QDBusInterface kded(service,
+                            QStringLiteral("/kbuildsycoca"),
+                            QStringLiteral("org.kde.kbuildsycoca"),
+                            QDBusConnection::sessionBus());
+        if (kded.isValid()) {
+            // Call recreate() and wait for it to complete (it runs
+            // kbuildsycoca synchronously inside kded). Use a 30s timeout
+            // to match the direct-process fallback below.
+            QDBusReply<void> reply = kded.callWithArgumentList(
+                QDBus::BlockWithGui,
+                QStringLiteral("recreate"),
+                {});
+            if (reply.isValid()) {
+                rebuiltViaDbus = true;
+                break;
+            }
+            // If the call failed (e.g. timeout), try the next service.
+        }
+    }
+
+    // Fallback: run kbuildsycoca directly if kded D-Bus is unavailable.
+    if (!rebuiltViaDbus) {
+        static const QStringList kbuildsycocaNames = {
+            QStringLiteral("kbuildsycoca6"),
+            QStringLiteral("kbuildsycoca5"),
+        };
+        for (const auto& prog : kbuildsycocaNames) {
+            QProcess p;
+            p.setProgram(prog);
+            p.setArguments({QStringLiteral("--noincremental")});
+            p.setProcessChannelMode(QProcess::ForwardedChannels);
+            p.start();
+            if (p.waitForStarted(2000)) {
+                p.waitForFinished(30000);
+                break;
+            }
+        }
     }
 }
 

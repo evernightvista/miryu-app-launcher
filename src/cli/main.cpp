@@ -62,9 +62,9 @@ int doIntegrate(const QStringList& args) {
             err << i18n("Failed to register %1", target) << Qt::endl;
             ++failures; continue;
         }
+        // installDesktopFileAndIcons() already calls refreshCaches() synchronously.
         out << i18n("Integrated: %1", target) << Qt::endl;
     }
-    miryu::refreshCaches();
     return failures ? 2 : 0;
 }
 
@@ -76,6 +76,7 @@ int doUnintegrate(const QStringList& args) {
     int failures = 0;
     for (const auto& path : args) {
         const QString abs = QFileInfo(path).absoluteFilePath();
+        // unregisterAppImage() already calls refreshCaches() synchronously.
         if (miryu::unregisterAppImage(abs)) {
             out << i18n("Unintegrated: %1", abs) << Qt::endl;
         } else {
@@ -83,7 +84,6 @@ int doUnintegrate(const QStringList& args) {
             ++failures;
         }
     }
-    miryu::refreshCaches();
     return failures ? 2 : 0;
 }
 

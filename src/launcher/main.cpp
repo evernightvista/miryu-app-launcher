@@ -158,8 +158,10 @@ int main(int argc, char** argv) {
         return 0; // cancelled
 
     const QString integratedPath = miryu::buildIntegratedPath(path);
+    // integrateAppImage() -> installDesktopFileAndIcons() already calls
+    // refreshCaches() synchronously, so the KDE menu is updated by the time
+    // the dialog closes.
     const auto result = miryu::integrateAppImage(path, integratedPath, /*interactive=*/true);
-    miryu::refreshCaches();
 
     if (result == miryu::IntegrationResult::Failed) {
         warn(i18n("Failed to integrate %1.", path));

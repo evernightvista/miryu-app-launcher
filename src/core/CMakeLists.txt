@@ -8,11 +8,31 @@
 # extension .kcfgc".
 kconfig_add_kcfg_files(miryu-core_SRCS miryusettings.kcfgc)
 
+# Generate a C++ header containing all available translations of the desktop
+# action name ("Remove this AppImage") from the .po files. These are written as
+# Name[locale]=translation entries in the integrated .desktop file so KConfig
+# picks the correct language at display time (KService does NOT translate
+# [Desktop Action] Name= via X-KDE-TranslationDomain).
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
+set(ACTION_TRANSLATIONS_HEADER "${CMAKE_CURRENT_BINARY_DIR}/action-translations.h")
+set(ACTION_TRANSLATIONS_SCRIPT "${CMAKE_SOURCE_DIR}/cmake/extract-action-translations.py")
+file(GLOB MIRYU_PO_FILES "${CMAKE_SOURCE_DIR}/po/*.po")
+add_custom_command(
+    OUTPUT "${ACTION_TRANSLATIONS_HEADER}"
+    COMMAND ${Python3_EXECUTABLE} "${ACTION_TRANSLATIONS_SCRIPT}"
+            "${CMAKE_SOURCE_DIR}/po"
+            "${ACTION_TRANSLATIONS_HEADER}"
+    DEPENDS ${MIRYU_PO_FILES} "${ACTION_TRANSLATIONS_SCRIPT}"
+    COMMENT "Generating desktop action translations from .po files"
+    VERBATIM
+)
+
 add_library(miryu-core STATIC
     config.h
     config.cpp
     miryu.h
     miryu.cpp
+    "${ACTION_TRANSLATIONS_HEADER}"
     ${miryu-core_SRCS}
 )
 # PIC is required because miryu-core is linked into the kcm_miryu.so shared

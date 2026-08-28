@@ -1,6 +1,6 @@
 Name:           miryu-app-launcher
 Version:        1.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Lean AppImage desktop integration for KDE Plasma 6
 
 License:        MIT
@@ -19,6 +19,7 @@ BuildRequires:  kf6-kwidgetsaddons-devel >= 6.0
 BuildRequires:  libappimage-devel >= 1.0
 BuildRequires:  glib2-devel >= 2.40
 BuildRequires:  gettext
+BuildRequires:  python3
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  desktop-file-utils
 
@@ -72,7 +73,15 @@ avoiding the complexity of a preload library and recursive execution.
 %{_datadir}/locale/*/LC_MESSAGES/miryu-app-launcher.mo
 
 %changelog
-* Fri Aug 28 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-2
+* Fri Aug 28 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-3
+- Fix Remove AppImage action not following system language:
+  * KF6 KService does NOT translate [Desktop Action] Name= via
+    X-KDE-TranslationDomain; it only reads the raw string
+  * Embed all available translations as Name[locale]= entries in the
+    desktop file at integration time
+  * Build-time Python script extracts translations from .po files into
+    a generated C++ header
+  * KConfig readEntry("Name") auto-selects the matching locale entry
 - Fix Remove AppImage action not following system language changes:
   * Write untranslated source string to desktop file instead of i18nc() result
   * KDE now translates it at display time via X-KDE-TranslationDomain

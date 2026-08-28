@@ -75,9 +75,9 @@ void integrateIfAppImage(const QString& path) {
     if (miryu::isRegistered(path))
         return;
     qInfo() << "miryud: integrating" << path;
-    if (miryu::installDesktopFileAndIcons(path))
-        miryu::refreshCaches();
-    else
+    // installDesktopFileAndIcons() already calls refreshCaches() synchronously
+    // before returning, so the KDE menu is up-to-date by the time we log success.
+    if (!miryu::installDesktopFileAndIcons(path))
         qWarning() << "miryud: failed to integrate" << path;
 }
 
