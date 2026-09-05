@@ -760,8 +760,8 @@ IntegrationResult integrateAppImage(const QString& pathToAppImage,
         QFileInfo(pathToIntegratedAppImage).absoluteFilePath()) {
         if (QFile::exists(pathToIntegratedAppImage)) {
             if (interactive) {
-                QMessageBox mb(QMessageBox::Warning, i18n("Warning"),
-                    i18n("An AppImage with the same name has already been integrated.\n\n"
+                QMessageBox mb(QMessageBox::Warning, i18nd("miryu-app-launcher", "Warning"),
+                    i18nd("miryu-app-launcher", "An AppImage with the same name has already been integrated.\n\n"
                          "Do you want to overwrite it? (Choosing No will run the AppImage once.)"),
                     QMessageBox::Yes | QMessageBox::No);
                 mb.setDefaultButton(QMessageBox::No);

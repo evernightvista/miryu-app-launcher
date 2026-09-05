@@ -1,6 +1,6 @@
 Name:           miryu-app-launcher
 Version:        1.0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Lean AppImage desktop integration for KDE Plasma 6
 
 License:        MIT
@@ -73,6 +73,19 @@ avoiding the complexity of a preload library and recursive execution.
 %{_datadir}/locale/*/LC_MESSAGES/miryu-app-launcher.mo
 
 %changelog
+* Sat Sep 05 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-4
+- Fix KDE application launcher not immediately showing newly integrated
+  AppImages: run kbuildsycoca6 synchronously (was startDetached) so the
+  KSycoca database is rebuilt before the integration call returns.
+  plasmashell's KDirWatch then detects the new database and Kickoff
+  reloads its application list without a logout.
+- Add kf6-kservice runtime dependency (provides kbuildsycoca6).
+- Run update-desktop-database synchronously; keep gtk-update-icon-cache
+  and update-mime-database detached (not on the KDE menu critical path).
+- Fall back to kbuildsycoca5 for Plasma 5 / KF5 systems.
+- Remove redundant refreshCaches() calls from daemon, CLI and launcher
+  (installDesktopFileAndIcons / unregisterAppImage already refresh).
+
 * Fri Aug 28 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-3
 - Fix Remove AppImage action not following system language:
   * KF6 KService does NOT translate [Desktop Action] Name= via

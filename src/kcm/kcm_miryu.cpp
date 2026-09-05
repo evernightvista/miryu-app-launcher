@@ -32,8 +32,12 @@ K_PLUGIN_CLASS_WITH_JSON(KcmMiryu, "kcm_miryu.json")
 KcmMiryu::KcmMiryu(QObject* parent, const KPluginMetaData& data)
     : KCModule(parent, data)
 {
-    // Set translation domain for this KCM plugin (matches JSON and .po catalog)
-    KLocalizedString::setApplicationDomain(QByteArrayLiteral("miryu-app-launcher"));
+    // NOTE: We intentionally do NOT call setApplicationDomain() here.
+    // KCM plugins run inside the systemsettings process; changing the global
+    // translation domain would break translation of systemsettings' own UI
+    // (e.g. the unsaved-changes warning dialog). Instead, we use i18ndc() /
+    // i18nd() with an explicit domain so our strings still translate correctly
+    // without affecting the host process.
 
     auto* mainLayout = new QVBoxLayout(widget());
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -46,47 +50,47 @@ KcmMiryu::KcmMiryu(QObject* parent, const KPluginMetaData& data)
     outer->setContentsMargins(0, 0, 0, 0);
 
     // Integration group
-    auto* integ = new QGroupBox(i18nc("@title:group", "Integration"), settingsPage);
+    auto* integ = new QGroupBox(i18ndc("miryu-app-launcher", "@title:group", "Integration"), settingsPage);
     auto* f1 = new QFormLayout(integ);
-    m_askToMove = new QCheckBox(i18nc("@option:check",
+    m_askToMove = new QCheckBox(i18ndc("miryu-app-launcher", "@option:check",
         "Ask whether to integrate an AppImage when it is opened"), integ);
     auto* destRow = new QHBoxLayout;
     m_destination = new QLineEdit(integ);
-    auto* browse = new QPushButton(i18nc("@button", "Browse..."), integ);
+    auto* browse = new QPushButton(i18ndc("miryu-app-launcher", "@button", "Browse..."), integ);
     browse->setObjectName(QStringLiteral("browse"));
     destRow->addWidget(m_destination);
     destRow->addWidget(browse);
     f1->addRow(m_askToMove);
-    f1->addRow(i18nc("@label:textbox", "Integration directory:"), destRow);
+    f1->addRow(i18ndc("miryu-app-launcher", "@label:textbox", "Integration directory:"), destRow);
     outer->addWidget(integ);
 
     // Daemon group
-    auto* dae = new QGroupBox(i18nc("@title:group", "Background Daemon"), settingsPage);
+    auto* dae = new QGroupBox(i18ndc("miryu-app-launcher", "@title:group", "Background Daemon"), settingsPage);
     auto* f2 = new QFormLayout(dae);
-    m_enableDaemon = new QCheckBox(i18nc("@option:check",
+    m_enableDaemon = new QCheckBox(i18ndc("miryu-app-launcher", "@option:check",
         "Enable the miryud autointegration daemon"), dae);
     auto* dirsRow = new QHBoxLayout;
     m_watchDirs = new QListWidget(dae);
     m_watchDirs->setSelectionMode(QAbstractItemView::ExtendedSelection);
     auto* btnCol = new QVBoxLayout;
     auto* addDir = new QPushButton(QIcon::fromTheme(QStringLiteral("list-add")),
-                             i18nc("@button", "Add..."), dae);
+                             i18ndc("miryu-app-launcher", "@button", "Add..."), dae);
     auto* removeDir = new QPushButton(QIcon::fromTheme(QStringLiteral("list-remove")),
-                                i18nc("@button", "Remove"), dae);
+                                i18ndc("miryu-app-launcher", "@button", "Remove"), dae);
     btnCol->addWidget(addDir);
     btnCol->addWidget(removeDir);
     btnCol->addStretch();
     dirsRow->addWidget(m_watchDirs);
     dirsRow->addLayout(btnCol);
-    m_monitorMounts = new QCheckBox(i18nc("@option:check",
+    m_monitorMounts = new QCheckBox(i18ndc("miryu-app-launcher", "@option:check",
         "Also watch <mount>/Applications on mounted filesystems"), dae);
     f2->addRow(m_enableDaemon);
-    f2->addRow(i18nc("@label", "Additional directories to watch:"), dirsRow);
+    f2->addRow(i18ndc("miryu-app-launcher", "@label", "Additional directories to watch:"), dirsRow);
     f2->addRow(m_monitorMounts);
     outer->addWidget(dae);
 
     outer->addStretch();
-    tabWidget->addTab(settingsPage, i18nc("@title:tab", "Settings"));
+    tabWidget->addTab(settingsPage, i18ndc("miryu-app-launcher", "@title:tab", "Settings"));
 
     // --- About Tab ---
     auto* aboutPage = new QWidget(tabWidget);
@@ -99,17 +103,17 @@ KcmMiryu::KcmMiryu(QObject* parent, const KPluginMetaData& data)
     headerRow->addWidget(iconLabel);
 
     auto* titleCol = new QVBoxLayout();
-    auto* titleLabel = new QLabel(i18nc("@title", "Miryu App Launcher"), aboutPage);
+    auto* titleLabel = new QLabel(i18ndc("miryu-app-launcher", "@title", "Miryu App Launcher"), aboutPage);
     auto titleFont = titleLabel->font();
     titleFont.setPointSize(titleFont.pointSize() * 1.5);
     titleFont.setBold(true);
     titleLabel->setFont(titleFont);
     titleCol->addWidget(titleLabel);
 
-    auto* versionLabel = new QLabel(i18nc("@label", "Version %1", QStringLiteral(MIRYU_VERSION)), aboutPage);
+    auto* versionLabel = new QLabel(i18ndc("miryu-app-launcher", "@label", "Version %1", QStringLiteral(MIRYU_VERSION)), aboutPage);
     titleCol->addWidget(versionLabel);
 
-    auto* copyrightLabel = new QLabel(i18nc("@info", "© 2027 KairikiFedora, © 2027 MiryuGaming"), aboutPage);
+    auto* copyrightLabel = new QLabel(i18ndc("miryu-app-launcher", "@info", "© 2027 KairikiFedora, © 2027 MiryuGaming"), aboutPage);
     titleCol->addWidget(copyrightLabel);
 
     headerRow->addLayout(titleCol);
@@ -119,13 +123,13 @@ KcmMiryu::KcmMiryu(QObject* parent, const KPluginMetaData& data)
     aboutLayout->addSpacing(10);
 
     // License
-    auto* licenseLabel = new QLabel(i18nc("@info", "Licensed under the MIT License."), aboutPage);
+    auto* licenseLabel = new QLabel(i18ndc("miryu-app-launcher", "@info", "Licensed under the MIT License."), aboutPage);
     aboutLayout->addWidget(licenseLabel);
 
     aboutLayout->addSpacing(20);
 
     // Contributors (on new line)
-    auto* contributorsLabel = new QLabel(i18nc("@title:group", "Thanks to the following contributors:"), aboutPage);
+    auto* contributorsLabel = new QLabel(i18ndc("miryu-app-launcher", "@title:group", "Thanks to the following contributors:"), aboutPage);
     auto contributorsFont = contributorsLabel->font();
     contributorsFont.setBold(true);
     contributorsLabel->setFont(contributorsFont);
@@ -151,19 +155,19 @@ KcmMiryu::KcmMiryu(QObject* parent, const KPluginMetaData& data)
     };
 
     contributorsRow->addWidget(createLinkLabel(
-        i18nc("@info:contributor", "MiryuGaming"),
+        i18ndc("miryu-app-launcher", "@info:contributor", "MiryuGaming"),
         QStringLiteral("https://github.com/miryugaming")));
     contributorsRow->addWidget(createLinkLabel(
-        i18nc("@info:contributor", "jtgg114514"),
+        i18ndc("miryu-app-launcher", "@info:contributor", "jtgg114514"),
         QStringLiteral("https://github.com/jtgg114514")));
     contributorsRow->addWidget(createLinkLabel(
-        i18nc("@info:contributor", "FarnaHerry"),
+        i18ndc("miryu-app-launcher", "@info:contributor", "FarnaHerry"),
         QStringLiteral("https://github.com/FarnaHerry")));
     contributorsRow->addStretch();
     aboutLayout->addLayout(contributorsRow);
 
     aboutLayout->addStretch();
-    tabWidget->addTab(aboutPage, i18nc("@title:tab", "About"));
+    tabWidget->addTab(aboutPage, i18ndc("miryu-app-launcher", "@title:tab", "About"));
 
     mainLayout->addWidget(tabWidget);
 
@@ -178,7 +182,7 @@ KcmMiryu::KcmMiryu(QObject* parent, const KPluginMetaData& data)
 
     connect(browse, &QPushButton::clicked, this, [this]() {
         const auto dir = QFileDialog::getExistingDirectory(
-            widget(), i18nc("@title:window", "Select Integration Directory"),
+            widget(), i18ndc("miryu-app-launcher", "@title:window", "Select Integration Directory"),
             m_destination->text());
         if (!dir.isEmpty()) m_destination->setText(dir);
     });
@@ -226,7 +230,7 @@ void KcmMiryu::markChanged() { setNeedsSave(true); }
 
 void KcmMiryu::addWatchDir() {
     const auto dir = QFileDialog::getExistingDirectory(
-        widget(), i18nc("@title:window", "Select Directory to Watch"));
+        widget(), i18ndc("miryu-app-launcher", "@title:window", "Select Directory to Watch"));
     if (!dir.isEmpty()) {
         m_watchDirs->addItem(dir);
         markChanged();

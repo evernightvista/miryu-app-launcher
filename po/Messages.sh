@@ -15,6 +15,11 @@ srcdir="$(cd "$podir/.." && pwd)"
 #   i18np       -> 2 (singular, plural)
 #   i18ncp      -> 3 (context, singular, plural)
 #   ki18n       -> 1 (same as i18n)
+#   i18nd       -> 2 (domain, msgid)            -- domain arg is skipped
+#   i18ndc      -> 3 (domain, context, msgid)   -- domain arg is skipped
+#   i18ndp      -> 3 (domain, singular, plural)
+#   i18ndcp     -> 4 (domain, context, singular, plural)
+#   ki18nd      -> 2 (domain, msgid)
 KEYWORDS="
 -k_i18n
 --keyword=i18n:1
@@ -22,6 +27,11 @@ KEYWORDS="
 --keyword=i18np:1,2
 --keyword=i18ncp:1c,2,3
 --keyword=ki18n:1
+--keyword=i18nd:2
+--keyword=i18ndc:2c,3
+--keyword=i18ndp:2,3
+--keyword=i18ndcp:2c,3,4
+--keyword=ki18nd:2
 "
 
 # Collect the translatable C++ sources.
