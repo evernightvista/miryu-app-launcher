@@ -1,6 +1,6 @@
 Name:           miryu-app-launcher
-Version:        1.0.0
-Release:        4%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Lean AppImage desktop integration for KDE Plasma 6
 
 License:        MIT
@@ -73,6 +73,9 @@ avoiding the complexity of a preload library and recursive execution.
 %{_datadir}/locale/*/LC_MESSAGES/miryu-app-launcher.mo
 
 %changelog
+* Sun Sep 06 2026 KairikiFedora <13278297951@sina.cn> - 1.0.1-1
+- Fix Appimage Integrate Failed
+
 * Sat Sep 05 2026 KairikiFedora <13278297951@sina.cn> - 1.0.0-4
 - Fix KDE application launcher not immediately showing newly integrated
   AppImages: run kbuildsycoca6 synchronously (was startDetached) so the

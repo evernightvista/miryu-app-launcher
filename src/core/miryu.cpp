@@ -20,6 +20,7 @@
 #include <QList>
 #include <QMessageBox>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QSet>
 #include <QStandardPaths>
 #include <QStringList>
@@ -596,6 +597,48 @@ bool installDesktopFileAndIcons(const QString& pathToAppImage) {
     const auto flags = GKeyFileFlags(G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS);
     if (!g_key_file_load_from_file(kf.get(), desktopPath.toUtf8().constData(), flags, err.get()))
         return false;
+
+    // libappimage appends the X-AppImage-Version (a numeric build ID) to the
+    // Name= field, producing entries like "QQ (52892)". Strip that suffix from
+    // the default Name and all localized Name[xx] variants so users see the
+    // clean application name in their launcher.
+    {
+        static const QRegularExpression versionSuffix(
+            QStringLiteral("\\s*\\(\\d+\\)\\s*$"));
+
+        auto stripVersionSuffix = [&](const QByteArray& key) {
+            if (!g_key_file_has_key(kf.get(), G_KEY_FILE_DESKTOP_GROUP,
+                                    key.constData(), nullptr))
+                return;
+            gchar* raw = g_key_file_get_string(kf.get(), G_KEY_FILE_DESKTOP_GROUP,
+                                               key.constData(), nullptr);
+            if (!raw) return;
+            QString name = QString::fromUtf8(raw);
+            g_free(raw);
+            QString cleaned = name;
+            cleaned.remove(versionSuffix);
+            if (cleaned != name && !cleaned.isEmpty()) {
+                g_key_file_set_string(kf.get(), G_KEY_FILE_DESKTOP_GROUP,
+                                      key.constData(),
+                                      cleaned.toUtf8().constData());
+            }
+        };
+
+        // Default Name
+        stripVersionSuffix(QByteArray(G_KEY_FILE_DESKTOP_KEY_NAME));
+
+        // Localized Name[locale] entries — iterate over all keys in the group
+        gchar** keys = g_key_file_get_keys(kf.get(), G_KEY_FILE_DESKTOP_GROUP,
+                                           nullptr, nullptr);
+        if (keys) {
+            for (gsize i = 0; keys[i] != nullptr; ++i) {
+                QByteArray key(keys[i]);
+                if (key.startsWith("Name["))
+                    stripVersionSuffix(key);
+            }
+            g_strfreev(keys);
+        }
+    }
 
     // preserve existing desktop actions, then append a Miryu Remove action that
     // shells out to the CLI (miryu-app-launcher-cli unintegrate <path>)
